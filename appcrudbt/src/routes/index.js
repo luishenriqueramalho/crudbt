@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 // Pages
 import Home from "../screens/Home";
+import ListarAtletas from "../screens/ListarAtletas";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,11 @@ function RootStackScreen() {
         <Stack.Screen
           name="Home"
           component={Home}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="ListarAtletas"
+          component={ListarAtletas}
           options={{ gestureEnabled: false }}
         />
       </Stack.Group>

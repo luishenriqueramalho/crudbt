@@ -1,5 +1,6 @@
-import { SafeAreaView, StatusBar, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native";
 import { styled } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 
 const Container = styled.View`
   align-items: center;
@@ -27,12 +28,17 @@ const TitleButton = styled.Text`
 `;
 
 export default function Home() {
+  const navigation = useNavigation();
+
   return (
     <>
       <SafeAreaView />
       <Container>
         <Title>Crud BT</Title>
-        <ClickOption activeOpacity={0.7}>
+        <ClickOption
+          onPress={() => navigation.navigate("ListarAtletas")}
+          activeOpacity={0.7}
+        >
           <TitleButton>Listar Atletas</TitleButton>
         </ClickOption>
         <ClickOption activeOpacity={0.7}>
