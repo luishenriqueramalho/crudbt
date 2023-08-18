@@ -36,3 +36,7 @@ model Arenas {
   estado       String
   Atletas      Atletas[]
 }
+
+model Categorias {
+  id String @id @default(uuid())
+}
