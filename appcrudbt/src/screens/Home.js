@@ -41,13 +41,24 @@ export default function Home() {
         >
           <TitleButton>Listar Atletas</TitleButton>
         </ClickOption>
-        <ClickOption activeOpacity={0.7}>
+        <ClickOption
+          onPress={() => navigation.navigate("ListarArenas")}
+          activeOpacity={0.7}
+        >
           <TitleButton>Listar Arenas</TitleButton>
         </ClickOption>
-        <ClickOption activeOpacity={0.7} showBlue>
+        <ClickOption
+          onPress={() => navigation.navigate("CadastrarAtletas")}
+          activeOpacity={0.7}
+          showBlue
+        >
           <TitleButton>Cadastrar Atletas</TitleButton>
         </ClickOption>
-        <ClickOption activeOpacity={0.7} showBlue>
+        <ClickOption
+          onPress={() => navigation.navigate("CadastrarArenas")}
+          activeOpacity={0.7}
+          showBlue
+        >
           <TitleButton>Cadastrar Arenas</TitleButton>
         </ClickOption>
       </Container>
