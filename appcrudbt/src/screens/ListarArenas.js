@@ -14,6 +14,7 @@ const HeaderBar = styled.View`
   flex-direction: row;
   margin-horizontal: 24px;
 `;
+
 const Back = styled.Image`
   width: 20px;
   height: 20px;
@@ -42,20 +43,26 @@ const SubTitle = styled.Text`
   margin-top: 10px;
 `;
 
+const ClickOption = styled.View`
+  width: 20%;
+  align-items: left;
+  justify-content: center;
+`;
+
 export default function ListarArenas() {
   const navigation = useNavigation();
   return (
     <>
       <SafeAreaView />
       <HeaderBar>
-        <View style={{ width: "20%" }}>
+        <ClickOption>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             activeOpacity={0.7}
           >
             <Back source={BackButton} />
           </TouchableOpacity>
-        </View>
+        </ClickOption>
         <View style={{ width: "60%" }}>
           <Text
             style={{

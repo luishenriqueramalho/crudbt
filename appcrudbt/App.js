@@ -1,5 +1,6 @@
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import RootStackScreen from "./src/routes";
+import { StatusBar } from "react-native";
 
 export default function App() {
   const MyTheme = {
@@ -12,6 +13,7 @@ export default function App() {
 
   return (
     <NavigationContainer theme={MyTheme}>
+      <StatusBar barStyle="light-content" backgroundColor="transparent" />
       <RootStackScreen />
     </NavigationContainer>
   );

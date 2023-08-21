@@ -49,6 +49,11 @@ const TitleSub = styled.Text`
   color: white;
   margin-top: 20px;
 `;
+const ClickOption = styled.View`
+  width: 20%;
+  align-items: left;
+  justify-content: center;
+`;
 
 export default function ListarAtletas() {
   const navigation = useNavigation();
@@ -56,14 +61,14 @@ export default function ListarAtletas() {
     <>
       <SafeAreaView />
       <HeaderBar>
-        <View style={{ width: "20%" }}>
+        <ClickOption>
           <TouchableOpacity
             onPress={() => navigation.goBack()}
             activeOpacity={0.7}
           >
             <Back source={BackButton} />
           </TouchableOpacity>
-        </View>
+        </ClickOption>
         <View style={{ width: "60%" }}>
           <Text
             style={{

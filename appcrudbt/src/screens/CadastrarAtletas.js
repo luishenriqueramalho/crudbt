@@ -50,66 +50,71 @@ const TitleButton = styled.Text`
   color: white;
 `;
 
+const ClickOption = styled.View`
+  width: 20%;
+  align-items: left;
+  justify-content: center;
+`;
+
 export default function CadastrarAtletas() {
   const navigation = useNavigation();
   return (
     <>
-      <SafeAreaView>
-        <HeaderBar>
-          <View style={{ width: "20%" }}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              activeOpacity={0.7}
-            >
-              <Back source={BackButton} />
-            </TouchableOpacity>
-          </View>
-          <View style={{ width: "60%" }}>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 24,
-                fontWeight: "bold",
-                color: "#F57336",
-              }}
-            >
-              Cadastrar Atleta
-            </Text>
-          </View>
-          <View style={{ width: "20%" }}>
-            <Text></Text>
-          </View>
-        </HeaderBar>
-        <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
-          <InputView>
-            <TextInput placeholder="Nome Completo" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Data de Nascimento" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Mão Dominante" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Raquete" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Arena" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Sexo" />
-            <LineInput />
-          </InputView>
-          <Button onPress={() => navigation.goBack()}>
-            <TitleButton>Cadastrar</TitleButton>
-          </Button>
-        </Container>
-      </SafeAreaView>
+      <SafeAreaView />
+      <HeaderBar>
+        <ClickOption>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            activeOpacity={0.7}
+          >
+            <Back source={BackButton} />
+          </TouchableOpacity>
+        </ClickOption>
+        <View style={{ width: "60%" }}>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 24,
+              fontWeight: "bold",
+              color: "#F57336",
+            }}
+          >
+            Cadastrar Atleta
+          </Text>
+        </View>
+        <View style={{ width: "20%" }}>
+          <Text></Text>
+        </View>
+      </HeaderBar>
+      <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
+        <InputView>
+          <TextInput placeholder="Nome Completo" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Data de Nascimento" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Mão Dominante" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Raquete" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Arena" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Sexo" />
+          <LineInput />
+        </InputView>
+        <Button onPress={() => navigation.goBack()}>
+          <TitleButton>Cadastrar</TitleButton>
+        </Button>
+      </Container>
     </>
   );
 }

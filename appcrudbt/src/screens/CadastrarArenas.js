@@ -50,70 +50,75 @@ const TitleButton = styled.Text`
   color: white;
 `;
 
+const ClickOption = styled.View`
+  width: 20%;
+  align-items: left;
+  justify-content: center;
+`;
+
 export default function CadastrarArenas() {
   const navigation = useNavigation();
   return (
     <>
-      <SafeAreaView>
-        <HeaderBar>
-          <View style={{ width: "20%" }}>
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              activeOpacity={0.7}
-            >
-              <Back source={BackButton} />
-            </TouchableOpacity>
-          </View>
-          <View style={{ width: "60%" }}>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 24,
-                fontWeight: "bold",
-                color: "#F57336",
-              }}
-            >
-              Cadastrar Atleta
-            </Text>
-          </View>
-          <View style={{ width: "20%" }}>
-            <Text></Text>
-          </View>
-        </HeaderBar>
-        <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
-          <InputView>
-            <TextInput placeholder="Nome da Arena" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Data de Início" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Total de Quadras" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Endereço" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Bairro" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Cidade" />
-            <LineInput />
-          </InputView>
-          <InputView>
-            <TextInput placeholder="Estado" />
-            <LineInput />
-          </InputView>
-          <Button onPress={() => navigation.goBack()}>
-            <TitleButton>Cadastrar</TitleButton>
-          </Button>
-        </Container>
-      </SafeAreaView>
+      <SafeAreaView />
+      <HeaderBar>
+        <ClickOption>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            activeOpacity={0.7}
+          >
+            <Back source={BackButton} />
+          </TouchableOpacity>
+        </ClickOption>
+        <View style={{ width: "60%" }}>
+          <Text
+            style={{
+              textAlign: "center",
+              fontSize: 24,
+              fontWeight: "bold",
+              color: "#F57336",
+            }}
+          >
+            Cadastrar Arena
+          </Text>
+        </View>
+        <View style={{ width: "20%" }}>
+          <Text></Text>
+        </View>
+      </HeaderBar>
+      <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
+        <InputView>
+          <TextInput placeholder="Nome da Arena" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Data de Início" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Total de Quadras" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Endereço" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Bairro" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Cidade" />
+          <LineInput />
+        </InputView>
+        <InputView>
+          <TextInput placeholder="Estado" />
+          <LineInput />
+        </InputView>
+        <Button onPress={() => navigation.goBack()}>
+          <TitleButton>Cadastrar</TitleButton>
+        </Button>
+      </Container>
     </>
   );
 }
