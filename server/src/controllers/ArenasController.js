@@ -38,3 +38,21 @@ exports.add_nova_arena = async (req, res) => {
     });
   }
 };
+
+exports.deletar_arena = async (req, res) => {
+  try {
+    const { arenaId } = req.params;
+    const del = await arena.findByIdAndDelete(arenaId);
+    res.status(200).json({
+      success: true,
+      message: "Arena deletada com sucesso!",
+      data: del,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Não foi possível deleta a arena!",
+      data: null,
+    });
+  }
+};

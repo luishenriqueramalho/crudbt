@@ -6,6 +6,7 @@ module.exports = function (app) {
     .route("/api/arenas")
     .get(arenasController.listar_todas_arenas)
     .post(arenasController.add_nova_arena);
+  app.route("/api/arenas/:arenaId").delete(arenasController.deletar_arena);
 
   app
     .route("/api/atletas")
