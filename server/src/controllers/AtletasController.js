@@ -42,10 +42,10 @@ exports.add_novo_atleta = async (req, res) => {
 exports.deletar_atleta = async (req, res) => {
   try {
     const { atletaId } = req.params;
-    const del = await arena.findByIdAndDelete(atletaId);
+    const del = await atleta.findByIdAndDelete(atletaId);
     res.status(200).json({
       success: true,
-      message: "AStleta deletado com sucesso!",
+      message: "Atleta deletado com sucesso!",
       data: del,
     });
   } catch (error) {
