@@ -1,39 +1,39 @@
 const mongoose = require("mongoose");
-const arena = mongoose.model("arena");
+const atleta = mongoose.model("atleta");
 
-// Listar todas as arenas
-exports.listar_todas_arenas = async (req, res) => {
+// Listar todos os atletas
+exports.listar_todos_atletas = async (req, res) => {
   try {
-    const arenas = await arena.find();
+    const atletas = await atleta.find();
     res.status(200).json({
       success: true,
       message: null,
       status: 200,
-      data: arenas,
+      data: atletas,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: "Erro ao consultar as arenas",
+      message: "Erro ao consultar os atletas",
       status: 500,
       data: null,
     });
   }
 };
 
-exports.add_nova_arena = async (req, res) => {
+exports.add_novo_atleta = async (req, res) => {
   try {
-    const novaArena = new arena(req.body);
-    await novaArena.save();
+    const novoAtleta = new atleta(req.body);
+    await novoAtleta.save();
     res.status(201).json({
       success: true,
-      message: "Arena criada com sucesso!",
+      message: "Atleta criado com sucesso!",
       status: 201,
     });
   } catch (error) {
     res.status(500).json({
       success: true,
-      message: "Erro ao cadastrar arena!",
+      message: "Erro ao cadastrar o atleta!",
       status: 500,
     });
   }

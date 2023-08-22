@@ -10,6 +10,7 @@ const dbPassword = process.env.DB_PASS;
 
 // Models
 const Arenas = require("./src/model/arenasModel");
+const Atletas = require("./src/model/atletasModel");
 
 const app = express();
 const PORT = process.env.PORT || 3333;
