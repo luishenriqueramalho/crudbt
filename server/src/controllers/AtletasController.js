@@ -38,3 +38,21 @@ exports.add_novo_atleta = async (req, res) => {
     });
   }
 };
+
+exports.deletar_atleta = async (req, res) => {
+  try {
+    const { atletaId } = req.params;
+    const del = await arena.findByIdAndDelete(atletaId);
+    res.status(200).json({
+      success: true,
+      message: "AStleta deletado com sucesso!",
+      data: del,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Não foi possível deleta o atleta!",
+      data: null,
+    });
+  }
+};
