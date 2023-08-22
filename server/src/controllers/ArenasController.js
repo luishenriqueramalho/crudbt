@@ -25,9 +25,17 @@ exports.add_nova_arena = async (req, res) => {
   try {
     const novaArena = new arena(req.body);
     await novaArena.save();
-    res.status(201).send(novaArena.toJSON());
+    res.status(201).json({
+      success: true,
+      message: "Arena criada com sucesso!",
+      status: 201,
+    });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({
+      success: true,
+      message: "Erro ao cadastrar arena!",
+      status: 500,
+    });
   }
 };
 
