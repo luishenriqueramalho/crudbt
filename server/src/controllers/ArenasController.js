@@ -5,9 +5,19 @@ const arena = mongoose.model("arena");
 exports.listar_todas_arenas = async (req, res) => {
   try {
     const arenas = await arena.find();
-    res.status(200).json(arenas);
+    res.status(200).json({
+      success: true,
+      message: null,
+      status: 200,
+      data: arenas,
+    });
   } catch (error) {
-    res.status(500).json(error);
+    res.status(500).json({
+      success: false,
+      message: "Erro ao consultar as arenas",
+      status: 500,
+      data: null,
+    });
   }
 };
 
