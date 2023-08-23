@@ -97,7 +97,7 @@ export default function ListarArenas() {
       <ScrollView>
         {isArenas.length > 0 &&
           isArenas.map((item, index) => (
-            <Conteiner>
+            <Conteiner key={index}>
               <Card>
                 <View
                   style={{
@@ -111,7 +111,9 @@ export default function ListarArenas() {
                   <SubTitle style={{ textAlign: "center" }}>
                     {item.totalQuadras} quadras
                   </SubTitle>
-                  <SubTitle style={{ textAlign: "center" }}>Aberto</SubTitle>
+                  <SubTitle style={{ textAlign: "center" }}>
+                    {item?.status ? "Ativo" : "Fechado"}
+                  </SubTitle>
                 </View>
                 <View
                   style={{
