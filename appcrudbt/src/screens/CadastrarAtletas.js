@@ -36,7 +36,7 @@ const LineInput = styled.View`
 `;
 
 const Button = styled.TouchableOpacity`
-  margin-top: 50px;
+  margin-top: 100px;
   margin-horizontal: 50px;
   background-color: #f57336;
   align-items: center;
@@ -111,7 +111,7 @@ export default function CadastrarAtletas() {
           <TextInput placeholder="Sexo" />
           <LineInput />
         </InputView>
-        <Button onPress={() => navigation.goBack()}>
+        <Button onPress={() => navigation.navigate("SucessCadastro")}>
           <TitleButton>Cadastrar</TitleButton>
         </Button>
       </Container>

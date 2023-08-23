@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   Text,
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { styled } from "styled-components";
 
 import BackButton from "../../assets/backButton.png";
 import { useNavigation } from "@react-navigation/native";
+import api from "../config/api";
 
 const HeaderBar = styled.View`
   flex-direction: row;
@@ -24,7 +26,7 @@ const Conteiner = styled.View`
   align-items: center;
 `;
 
-const Card = styled.View`
+const Card = styled.TouchableOpacity`
   flex-direction: row;
   margin-top: 20px;
   margin-horizontal: 24px;
@@ -57,6 +59,21 @@ const ClickOption = styled.View`
 
 export default function ListarAtletas() {
   const navigation = useNavigation();
+  const [isAtletas, setIsAtletas] = useState([]);
+
+  useEffect(() => {
+    try {
+      api
+        .get("/api/atletas")
+        .then((res) => setIsAtletas(res.data.data))
+        .catch((error) => console.log("Erro ao consultar os atletas", error));
+    } catch (error) {
+      console.log("Erro ao consultar os atletas", error);
+    }
+  }, [setIsAtletas]);
+
+  console.log(isAtletas);
+
   return (
     <>
       <SafeAreaView />
@@ -84,32 +101,41 @@ export default function ListarAtletas() {
           <Text></Text>
         </View>
       </HeaderBar>
-      <Conteiner>
-        <Card>
-          <View
-            style={{
-              width: "20%",
-              backgroundColor: "#033D77",
-              justifyContent: "space-between",
-              padding: 10,
-            }}
-          >
-            <Title>29 anos</Title>
-            <SubTitle>Direita</SubTitle>
-            <SubTitle>Adidas</SubTitle>
-          </View>
-          <View
-            style={{ width: "80%", backgroundColor: "#F57336", padding: 10 }}
-          >
-            <Title>Lorena Lopes de Macedo</Title>
-            <TitleSub>Número de registro: 12345678</TitleSub>
-            <TitleSub style={{ marginBottom: 20 }}>
-              Validade: 17/10/2023
-            </TitleSub>
-            <Title>Arena RedPlay</Title>
-          </View>
-        </Card>
-      </Conteiner>
+      <ScrollView>
+        {isAtletas.length > 0 &&
+          isAtletas.map((item, index) => (
+            <Conteiner key={index}>
+              <Card>
+                <View
+                  style={{
+                    width: "25%",
+                    backgroundColor: "#033D77",
+                    justifyContent: "space-between",
+                    padding: 10,
+                  }}
+                >
+                  <Title>29 anos</Title>
+                  <SubTitle>{item.maoDominante}</SubTitle>
+                  <SubTitle>{item.raquete}</SubTitle>
+                </View>
+                <View
+                  style={{
+                    width: "75%",
+                    backgroundColor: "#F57336",
+                    padding: 10,
+                  }}
+                >
+                  <Title>{item.nome}</Title>
+                  <TitleSub>Número de registro: 12345678</TitleSub>
+                  <TitleSub style={{ marginBottom: 20 }}>
+                    Validade: 17/10/2023
+                  </TitleSub>
+                  <Title>Arena: {item.arena}</Title>
+                </View>
+              </Card>
+            </Conteiner>
+          ))}
+      </ScrollView>
     </>
   );
 }

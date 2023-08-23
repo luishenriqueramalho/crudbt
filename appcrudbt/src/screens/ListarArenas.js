@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   SafeAreaView,
+  ScrollView,
   Text,
   TouchableOpacity,
   View,
@@ -9,6 +10,7 @@ import {
 import { styled } from "styled-components";
 import BackButton from "../../assets/backButton.png";
 import { useNavigation } from "@react-navigation/native";
+import api from "../config/api";
 
 const HeaderBar = styled.View`
   flex-direction: row;
@@ -51,6 +53,20 @@ const ClickOption = styled.View`
 
 export default function ListarArenas() {
   const navigation = useNavigation();
+  const [isArenas, setIsArenas] = useState([]);
+
+  useEffect(() => {
+    try {
+      api
+        .get("/api/arenas")
+        .then((res) => setIsArenas(res.data.data))
+        .catch((error) => console.log("Erro ao consultar as arenas", error));
+    } catch (error) {
+      console.log("Erro ao consultar as arenas", error);
+    }
+  }, [setIsArenas]);
+
+  console.log(isArenas);
   return (
     <>
       <SafeAreaView />
@@ -78,32 +94,45 @@ export default function ListarArenas() {
           <Text></Text>
         </View>
       </HeaderBar>
-      <Conteiner>
-        <Card>
-          <View
-            style={{
-              width: "20%",
-              backgroundColor: "#033D77",
-              justifyContent: "space-between",
-              padding: 10,
-            }}
-          >
-            <Title style={{ textAlign: "center" }}>2 anos</Title>
-            <SubTitle style={{ textAlign: "center" }}>7 quadras</SubTitle>
-            <SubTitle style={{ textAlign: "center" }}>Aberto</SubTitle>
-          </View>
-          <View
-            style={{ width: "80%", backgroundColor: "#F57336", padding: 10 }}
-          >
-            <Title>Arena RedPlay</Title>
-            <SubTitle>Número de Atletas: 120</SubTitle>
-            <SubTitle>Validade: 17/09/2024</SubTitle>
-            <SubTitle>Endereço: Rua das Alamedas, 120 </SubTitle>
-            <SubTitle>Bairro: Jardins</SubTitle>
-            <SubTitle>Cidade: São Gonçalo do Amarante</SubTitle>
-          </View>
-        </Card>
-      </Conteiner>
+      <ScrollView>
+        {isArenas.length > 0 &&
+          isArenas.map((item, index) => (
+            <Conteiner>
+              <Card>
+                <View
+                  style={{
+                    width: "20%",
+                    backgroundColor: "#033D77",
+                    justifyContent: "space-between",
+                    padding: 10,
+                  }}
+                >
+                  <Title style={{ textAlign: "center" }}>2 anos</Title>
+                  <SubTitle style={{ textAlign: "center" }}>
+                    {item.totalQuadras} quadras
+                  </SubTitle>
+                  <SubTitle style={{ textAlign: "center" }}>Aberto</SubTitle>
+                </View>
+                <View
+                  style={{
+                    width: "80%",
+                    backgroundColor: "#F57336",
+                    padding: 10,
+                  }}
+                >
+                  <Title>{item.nome}</Title>
+                  <SubTitle>Número de Atletas: 120</SubTitle>
+                  <SubTitle>Validade: 17/09/2024</SubTitle>
+                  <SubTitle>Endereço: {item.endereco}</SubTitle>
+                  <SubTitle>Bairro: {item.bairro}</SubTitle>
+                  <SubTitle>
+                    Cidade: {item.cidade} - {item.estado}
+                  </SubTitle>
+                </View>
+              </Card>
+            </Conteiner>
+          ))}
+      </ScrollView>
     </>
   );
 }

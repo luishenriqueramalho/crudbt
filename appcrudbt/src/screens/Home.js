@@ -1,6 +1,9 @@
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
 import { styled } from "styled-components";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import api from "../config/api";
+import Logo from "../../assets/logo.png";
 
 const Container = styled.View`
   align-items: center;
@@ -27,8 +30,15 @@ const TitleButton = styled.Text`
   text-align: center;
 `;
 
+const ImgLogo = styled.Image`
+  margin-top: 100px;
+  width: 210px;
+  height: 173px;
+`;
+
 export default function Home() {
   const navigation = useNavigation();
+  const [isArenas, setIsArenas] = useState(null);
 
   return (
     <>
@@ -61,6 +71,15 @@ export default function Home() {
         >
           <TitleButton>Cadastrar Arenas</TitleButton>
         </ClickOption>
+        <View
+          style={{
+            alignItems: "center",
+
+            width: "100%",
+          }}
+        >
+          <ImgLogo source={Logo} />
+        </View>
       </Container>
     </>
   );
