@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
+  Alert,
   SafeAreaView,
   Text,
   TextInput,
@@ -9,6 +10,7 @@ import {
 } from "react-native";
 import { styled } from "styled-components";
 import BackButton from "../../assets/backButton.png";
+import api from "../config/api";
 
 const HeaderBar = styled.View`
   flex-direction: row;
@@ -58,6 +60,40 @@ const ClickOption = styled.View`
 
 export default function CadastrarArenas() {
   const navigation = useNavigation();
+
+  const saveArena = async () => {
+    try {
+      api
+        .post("/api/arenas", {
+          nome: "Teste 2",
+          dataAbertura: "10/09/2022",
+          qntQuadras: "7",
+          endereco: "Rua das Alamandas",
+          bairro: "Jardins",
+          cidade: "São Gonçalo do Amarante",
+          estado: "RN",
+          status: true,
+        })
+        .then((res) => {
+          navigation.navigate("SucessCadastro");
+        })
+        .catch((err) => {
+          Alert.alert(
+            "Ocorreu um erro!",
+            "Parece que não foi possível salvar o atleta, tente novamente",
+            [
+              {
+                text: "Ok",
+                onPress: () => navigation.navigate("Home"),
+              },
+            ]
+          );
+        });
+    } catch (error) {
+      console.log("Deu erro, caiu no catch");
+    }
+  };
+
   return (
     <>
       <SafeAreaView />
@@ -115,7 +151,7 @@ export default function CadastrarArenas() {
           <TextInput placeholder="Estado" />
           <LineInput />
         </InputView>
-        <Button onPress={() => navigation.navigate("SucessCadastro")}>
+        <Button onPress={saveArena}>
           <TitleButton>Cadastrar</TitleButton>
         </Button>
       </Container>
