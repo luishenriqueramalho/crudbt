@@ -58,8 +58,10 @@ const ClickOption = styled.View`
   justify-content: center;
 `;
 
-export default function CadastrarArenas() {
+export default function CadastrarArenas({ route }) {
   const navigation = useNavigation();
+  const atualizarArena = route?.params?.atualizarArena;
+  const item = route?.params?.item;
   const [isNome, setIsNome] = useState(null);
   const [isDataAbertura, setIsDataAbertura] = useState(null);
   const [isQntQuadras, setIsQntQuadras] = useState(null);
@@ -102,6 +104,8 @@ export default function CadastrarArenas() {
     }
   };
 
+  const attArena = async () => {};
+
   return (
     <>
       <SafeAreaView />
@@ -123,7 +127,7 @@ export default function CadastrarArenas() {
               color: "#F57336",
             }}
           >
-            Cadastrar Arena
+            {atualizarArena ? "Atualizar Arena" : "Cadastrar Arena"}
           </Text>
         </View>
         <View style={{ width: "20%" }}>
@@ -135,6 +139,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Nome da Arena"
             onChangeText={(nome) => setIsNome(nome)}
+            value={item?.nome}
           />
           <LineInput />
         </InputView>
@@ -142,6 +147,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Data de Abertura"
             onChangeText={(dataAbertura) => setIsDataAbertura(dataAbertura)}
+            value={item?.dataAbertura}
           />
           <LineInput />
         </InputView>
@@ -149,6 +155,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Quantidade de Quadras"
             onChangeText={(qntQuadras) => setIsQntQuadras(qntQuadras)}
+            value={item?.qntQuadras}
           />
           <LineInput />
         </InputView>
@@ -156,6 +163,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Endereço"
             onChangeText={(endereco) => setIsEndereco(endereco)}
+            value={item?.endereco}
           />
           <LineInput />
         </InputView>
@@ -163,6 +171,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Bairro"
             onChangeText={(bairro) => setIsBairro(bairro)}
+            value={item?.bairro}
           />
           <LineInput />
         </InputView>
@@ -170,6 +179,7 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Cidade"
             onChangeText={(cidade) => setIsCidade(cidade)}
+            value={item?.cidade}
           />
           <LineInput />
         </InputView>
@@ -177,11 +187,14 @@ export default function CadastrarArenas() {
           <TextInput
             placeholder="Estado"
             onChangeText={(estado) => setIsEstado(estado)}
+            value={item?.estado}
           />
           <LineInput />
         </InputView>
-        <Button onPress={saveArena}>
-          <TitleButton>Cadastrar</TitleButton>
+        <Button onPress={attArena ? attArena : saveArena}>
+          <TitleButton>
+            {atualizarArena ? "Atualizar" : "Cadastrar"}
+          </TitleButton>
         </Button>
       </Container>
     </>

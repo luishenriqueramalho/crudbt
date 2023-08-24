@@ -25,7 +25,7 @@ const Back = styled.Image`
 const Conteiner = styled.View`
   align-items: center;
 `;
-const Card = styled.View`
+const Card = styled.TouchableOpacity`
   flex-direction: row;
   margin-top: 20px;
   margin-horizontal: 24px;
@@ -98,7 +98,15 @@ export default function ListarArenas() {
         {isArenas.length > 0 &&
           isArenas.map((item, index) => (
             <Conteiner key={index}>
-              <Card>
+              <Card
+                activeOpacity={0.7}
+                onPress={() =>
+                  navigation.navigate("CadastrarArenas", {
+                    atualizarArena: true,
+                    item: item,
+                  })
+                }
+              >
                 <View
                   style={{
                     width: "20%",

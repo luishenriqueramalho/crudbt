@@ -58,8 +58,10 @@ const ClickOption = styled.View`
   justify-content: center;
 `;
 
-export default function CadastrarAtletas() {
+export default function CadastrarAtletas({ route }) {
   const navigation = useNavigation();
+  const atualizarAtleta = route?.params?.atualizarAtleta;
+  const item = route?.params?.item;
   const [isNome, setIsNome] = useState(null);
   const [isDataNascimento, setIsDataNascimento] = useState(null);
   const [isMaoDominante, setIsMaoDominante] = useState(null);
@@ -71,12 +73,12 @@ export default function CadastrarAtletas() {
     try {
       api
         .post("/api/atletas", {
-          nome: "isNome",
-          dataNacimento: "isDataNascimento",
-          maoDominante: "isMaoDominante",
-          raquete: "isRaquete",
-          arenaPrimaria: "isArena",
-          sexo: "isSexo",
+          nome: isNome,
+          dataNascimento: isDataNascimento,
+          maoDominante: isMaoDominante,
+          raquete: isRaquete,
+          arenaPrimaria: isArena,
+          sexo: isSexo,
         })
         .then((res) => {
           console.log(res);
@@ -101,6 +103,8 @@ export default function CadastrarAtletas() {
     }
   };
 
+  const attAtleta = async () => {};
+
   return (
     <>
       <SafeAreaView />
@@ -122,7 +126,7 @@ export default function CadastrarAtletas() {
               color: "#F57336",
             }}
           >
-            Cadastrar Atleta
+            {atualizarAtleta ? "Atualizar Atleta" : "Cadastrar Atleta"}
           </Text>
         </View>
         <View style={{ width: "20%" }}>
@@ -134,13 +138,17 @@ export default function CadastrarAtletas() {
           <TextInput
             placeholder="Nome Completo"
             onChangeText={(nome) => setIsNome(nome)}
+            value={item?.nome}
           />
           <LineInput />
         </InputView>
         <InputView>
           <TextInput
             placeholder="Data de Nascimento"
-            onChangeText={(dataNacimento) => setIsDataNascimento(dataNacimento)}
+            onChangeText={(dataNascimento) =>
+              setIsDataNascimento(dataNascimento)
+            }
+            value={item?.dataNascimento}
           />
           <LineInput />
         </InputView>
@@ -148,6 +156,7 @@ export default function CadastrarAtletas() {
           <TextInput
             placeholder="Mão Dominante"
             onChangeText={(maoDominante) => setIsMaoDominante(maoDominante)}
+            value={item?.maoDominante}
           />
           <LineInput />
         </InputView>
@@ -155,6 +164,7 @@ export default function CadastrarAtletas() {
           <TextInput
             placeholder="Raquete"
             onChangeText={(raquete) => setIsRaquete(raquete)}
+            value={item?.raquete}
           />
           <LineInput />
         </InputView>
@@ -162,6 +172,7 @@ export default function CadastrarAtletas() {
           <TextInput
             placeholder="Arena"
             onChangeText={(arena) => setIsArena(arena)}
+            value={item?.arenaPrimaria}
           />
           <LineInput />
         </InputView>
@@ -169,11 +180,14 @@ export default function CadastrarAtletas() {
           <TextInput
             placeholder="Sexo"
             onChangeText={(sexo) => setIsSexo(sexo)}
+            value={item?.sexo}
           />
           <LineInput />
         </InputView>
-        <Button onPress={saveAtleta}>
-          <TitleButton>Cadastrar</TitleButton>
+        <Button onPress={attAtleta ? attAtleta : saveAtleta}>
+          <TitleButton>
+            {atualizarAtleta ? "Atualizar" : "Cadastrar"}
+          </TitleButton>
         </Button>
       </Container>
     </>

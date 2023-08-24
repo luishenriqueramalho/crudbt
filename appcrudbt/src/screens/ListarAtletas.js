@@ -105,7 +105,15 @@ export default function ListarAtletas() {
         {isAtletas.length > 0 &&
           isAtletas.map((item, index) => (
             <Conteiner key={index}>
-              <Card>
+              <Card
+                activeOpacity={0.7}
+                onPress={() =>
+                  navigation.navigate("CadastrarAtletas", {
+                    atualizarAtleta: true,
+                    item: item,
+                  })
+                }
+              >
                 <View
                   style={{
                     width: "25%",
@@ -126,11 +134,11 @@ export default function ListarAtletas() {
                   }}
                 >
                   <Title>{item.nome}</Title>
-                  <TitleSub>Número de registro: 12345678</TitleSub>
+                  <TitleSub>Número de registro: {item.id}</TitleSub>
                   <TitleSub style={{ marginBottom: 20 }}>
                     Validade: 17/10/2023
                   </TitleSub>
-                  <Title>Arena: {item.arena}</Title>
+                  <Title>Arena: {item.arenaPrimaria}</Title>
                 </View>
               </Card>
             </Conteiner>
