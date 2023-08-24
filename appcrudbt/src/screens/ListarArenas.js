@@ -124,7 +124,7 @@ export default function ListarArenas() {
                 >
                   <Title>{item.nome}</Title>
                   <SubTitle>Número de Atletas: 120</SubTitle>
-                  <SubTitle>Validade: 17/09/2024</SubTitle>
+                  <SubTitle>Abertura: {item.dataAbertura}</SubTitle>
                   <SubTitle>Endereço: {item.endereco}</SubTitle>
                   <SubTitle>Bairro: {item.bairro}</SubTitle>
                   <SubTitle>

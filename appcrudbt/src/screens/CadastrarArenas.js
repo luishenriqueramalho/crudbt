@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   SafeAreaView,
@@ -60,27 +60,35 @@ const ClickOption = styled.View`
 
 export default function CadastrarArenas() {
   const navigation = useNavigation();
+  const [isNome, setIsNome] = useState(null);
+  const [isDataAbertura, setIsDataAbertura] = useState(null);
+  const [isQntQuadras, setIsQntQuadras] = useState(null);
+  const [isEndereco, setIsEndereco] = useState(null);
+  const [isBairro, setIsBairro] = useState(null);
+  const [isCidade, setIsCidade] = useState(null);
+  const [isEstado, setIsEstado] = useState(null);
 
   const saveArena = async () => {
     try {
       api
         .post("/api/arenas", {
-          nome: "Teste 2",
-          dataAbertura: "10/09/2022",
-          qntQuadras: "7",
-          endereco: "Rua das Alamandas",
-          bairro: "Jardins",
-          cidade: "São Gonçalo do Amarante",
-          estado: "RN",
+          nome: isNome,
+          dataAbertura: isDataAbertura,
+          qntQuadras: isQntQuadras,
+          endereco: isEndereco,
+          bairro: isBairro,
+          cidade: isCidade,
+          estado: isEstado,
           status: true,
         })
         .then((res) => {
+          console.log(res);
           navigation.navigate("SucessCadastro");
         })
         .catch((err) => {
           Alert.alert(
             "Ocorreu um erro!",
-            "Parece que não foi possível salvar o atleta, tente novamente",
+            "Parece que não foi possível salvar a arena, tente novamente",
             [
               {
                 text: "Ok",
@@ -124,31 +132,52 @@ export default function CadastrarArenas() {
       </HeaderBar>
       <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
         <InputView>
-          <TextInput placeholder="Nome da Arena" />
+          <TextInput
+            placeholder="Nome da Arena"
+            onChangeText={(nome) => setIsNome(nome)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Data de Início" />
+          <TextInput
+            placeholder="Data de Abertura"
+            onChangeText={(dataAbertura) => setIsDataAbertura(dataAbertura)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Total de Quadras" />
+          <TextInput
+            placeholder="Quantidade de Quadras"
+            onChangeText={(qntQuadras) => setIsQntQuadras(qntQuadras)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Endereço" />
+          <TextInput
+            placeholder="Endereço"
+            onChangeText={(endereco) => setIsEndereco(endereco)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Bairro" />
+          <TextInput
+            placeholder="Bairro"
+            onChangeText={(bairro) => setIsBairro(bairro)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Cidade" />
+          <TextInput
+            placeholder="Cidade"
+            onChangeText={(cidade) => setIsCidade(cidade)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Estado" />
+          <TextInput
+            placeholder="Estado"
+            onChangeText={(estado) => setIsEstado(estado)}
+          />
           <LineInput />
         </InputView>
         <Button onPress={saveArena}>

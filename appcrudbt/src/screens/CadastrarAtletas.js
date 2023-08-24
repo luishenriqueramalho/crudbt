@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import {
+  Alert,
   SafeAreaView,
   Text,
   TextInput,
@@ -9,6 +10,7 @@ import {
 } from "react-native";
 import { styled } from "styled-components";
 import BackButton from "../../assets/backButton.png";
+import api from "../config/api";
 
 const HeaderBar = styled.View`
   flex-direction: row;
@@ -58,6 +60,47 @@ const ClickOption = styled.View`
 
 export default function CadastrarAtletas() {
   const navigation = useNavigation();
+  const [isNome, setIsNome] = useState(null);
+  const [isDataNascimento, setIsDataNascimento] = useState(null);
+  const [isMaoDominante, setIsMaoDominante] = useState(null);
+  const [isRaquete, setIsRaquete] = useState(null);
+  const [isArena, setIsArena] = useState(null);
+  const [isSexo, setIsSexo] = useState(null);
+
+  const saveAtleta = async () => {
+    try {
+      api
+        .post("/api/atletas", {
+          nome: "isNome",
+          dataNacimento: "isDataNascimento",
+          maoDominante: "isMaoDominante",
+          raquete: "isRaquete",
+          arenaPrimaria: "isArena",
+          sexo: "isSexo",
+        })
+        .then((res) => {
+          console.log(res);
+          navigation.navigate("SucessCadastro");
+        })
+        .catch((err) => {
+          Alert.alert(
+            "Ocorreu um erro!",
+            "Parece que não foi possível salvar o atleta, tente novamente." +
+              err,
+            [
+              {
+                text: "Ok",
+                onPress: () => navigation.navigate("Home"),
+              },
+            ]
+          );
+        });
+      console.log("caiu aqui");
+    } catch (error) {
+      console.log("Deu erro, caiu no catch");
+    }
+  };
+
   return (
     <>
       <SafeAreaView />
@@ -88,30 +131,48 @@ export default function CadastrarAtletas() {
       </HeaderBar>
       <Container style={{ marginTop: 80, marginHorizontal: 24 }}>
         <InputView>
-          <TextInput placeholder="Nome Completo" />
+          <TextInput
+            placeholder="Nome Completo"
+            onChangeText={(nome) => setIsNome(nome)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Data de Nascimento" />
+          <TextInput
+            placeholder="Data de Nascimento"
+            onChangeText={(dataNacimento) => setIsDataNascimento(dataNacimento)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Mão Dominante" />
+          <TextInput
+            placeholder="Mão Dominante"
+            onChangeText={(maoDominante) => setIsMaoDominante(maoDominante)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Raquete" />
+          <TextInput
+            placeholder="Raquete"
+            onChangeText={(raquete) => setIsRaquete(raquete)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Arena" />
+          <TextInput
+            placeholder="Arena"
+            onChangeText={(arena) => setIsArena(arena)}
+          />
           <LineInput />
         </InputView>
         <InputView>
-          <TextInput placeholder="Sexo" />
+          <TextInput
+            placeholder="Sexo"
+            onChangeText={(sexo) => setIsSexo(sexo)}
+          />
           <LineInput />
         </InputView>
-        <Button onPress={() => navigation.navigate("SucessCadastro")}>
+        <Button onPress={saveAtleta}>
           <TitleButton>Cadastrar</TitleButton>
         </Button>
       </Container>
