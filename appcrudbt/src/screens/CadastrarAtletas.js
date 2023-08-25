@@ -45,6 +45,16 @@ const Button = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 3px;
 `;
+const ButtonDelete = styled.TouchableOpacity`
+  align-items: center;
+`;
+
+const TitleDelete = styled.Text`
+  margin-top: 160px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+`;
 
 const TitleButton = styled.Text`
   font-size: 24px;
@@ -104,6 +114,7 @@ export default function CadastrarAtletas({ route }) {
   };
 
   const attAtleta = async () => {};
+  const deleteAtleta = async () => {};
 
   return (
     <>
@@ -189,6 +200,14 @@ export default function CadastrarAtletas({ route }) {
             {atualizarAtleta ? "Atualizar" : "Cadastrar"}
           </TitleButton>
         </Button>
+
+        {atualizarAtleta ? (
+          <ButtonDelete>
+            <TitleDelete onPress={deleteAtleta ? deleteAtleta : null}>
+              Excluir Atleta
+            </TitleDelete>
+          </ButtonDelete>
+        ) : null}
       </Container>
     </>
   );

@@ -45,6 +45,16 @@ const Button = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 3px;
 `;
+const ButtonDelete = styled.TouchableOpacity`
+  align-items: center;
+`;
+
+const TitleDelete = styled.Text`
+  margin-top: 100px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+`;
 
 const TitleButton = styled.Text`
   font-size: 24px;
@@ -105,6 +115,7 @@ export default function CadastrarArenas({ route }) {
   };
 
   const attArena = async () => {};
+  const deleteArena = async () => {};
 
   return (
     <>
@@ -196,6 +207,14 @@ export default function CadastrarArenas({ route }) {
             {atualizarArena ? "Atualizar" : "Cadastrar"}
           </TitleButton>
         </Button>
+
+        {atualizarArena ? (
+          <ButtonDelete>
+            <TitleDelete onPress={deleteArena ? deleteArena : null}>
+              Excluir Arena
+            </TitleDelete>
+          </ButtonDelete>
+        ) : null}
       </Container>
     </>
   );
