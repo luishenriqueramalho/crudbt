@@ -52,8 +52,6 @@ const ButtonDelete = styled.TouchableOpacity`
 const TitleDelete = styled.Text`
   margin-top: 160px;
   font-size: 20px;
-  font-weight: bold;
-  color: black;
 `;
 
 const TitleButton = styled.Text`
