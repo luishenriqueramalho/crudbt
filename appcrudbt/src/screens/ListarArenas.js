@@ -117,7 +117,7 @@ export default function ListarArenas() {
                 >
                   <Title style={{ textAlign: "center" }}>2 anos</Title>
                   <SubTitle style={{ textAlign: "center" }}>
-                    {item.totalQuadras} quadras
+                    {item.qntQuadras} quadras
                   </SubTitle>
                   <SubTitle style={{ textAlign: "center" }}>
                     {item?.status ? "Ativo" : "Fechado"}

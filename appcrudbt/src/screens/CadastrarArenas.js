@@ -47,11 +47,12 @@ const Button = styled.TouchableOpacity`
 `;
 const ButtonDelete = styled.TouchableOpacity`
   align-items: center;
+  margin-top: 20px;
 `;
 
 const TitleDelete = styled.Text`
-  margin-top: 100px;
   font-size: 20px;
+  color: blue;
 `;
 
 const TitleButton = styled.Text`
