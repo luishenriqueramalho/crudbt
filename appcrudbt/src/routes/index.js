@@ -8,6 +8,7 @@ import ListarArenas from "../screens/ListarArenas";
 import CadastrarAtletas from "../screens/CadastrarAtletas";
 import CadastrarArenas from "../screens/CadastrarArenas";
 import SucessCadastro from "../screens/SucessCadastro";
+import SelecionarArena from "../screens/SelecionarArena";
 
 const Stack = createStackNavigator();
 
@@ -45,6 +46,11 @@ function RootStackScreen() {
         <Stack.Screen
           name="SucessCadastro"
           component={SucessCadastro}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="SelecionarArena"
+          component={SelecionarArena}
           options={{ gestureEnabled: false }}
         />
       </Stack.Group>

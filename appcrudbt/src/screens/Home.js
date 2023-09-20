@@ -38,7 +38,6 @@ const ImgLogo = styled.Image`
 
 export default function Home() {
   const navigation = useNavigation();
-  const [isArenas, setIsArenas] = useState(null);
 
   return (
     <>
